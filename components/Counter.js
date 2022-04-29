@@ -14,7 +14,7 @@ const Counter = () => {
     return (
         <View>
             <Text>{count}</Text>
-            <Button onPress={() => {setCount(count + 1)}} title = {"カウント"}/>
+            <Button onPress={() => {setCount((prev) => prev+1)}} title = {"カウント"}/>
         </View>
     )
 }
