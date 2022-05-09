@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-const NewsArticle = ({imageuri, title, subText}) => {
+const NewsArticle = ({imageuri, title, subText, onPress}) => {
 
-    const [news, setNews] = useState([])
-
-    // useEffect(()=>{alert('useEffect is moved')},[])
+  const date = new Date(subText)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDay()
+  const releaseDay = `${year} - ${month} - ${day}`
 
     return(
-        <View style={styles.box}>
+        <TouchableOpacity style={styles.box} onPress = {onPress}>
             <View style = {styles.textBox}>
-                <Text style = {styles.Text}>
+                <Text numberOfLines={3} style = {styles.Text}>
                     {title}
                 </Text>
                 <Text style = {styles.subText}>
-                    {subText}
+                    {releaseDay}
                 </Text>
             </View>
             <View style = {styles.imageBox}>
@@ -25,7 +27,7 @@ const NewsArticle = ({imageuri, title, subText}) => {
                     }}
                 />
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -35,26 +37,25 @@ const styles = StyleSheet.create({
     box: {
       height: 100,
       width: '100%',
-      backgroundColor: 'lightblue',
+      backgroundColor: '#fff',
+      borderColor: 'lightblue',
       borderWidth: 1,
       flexDirection: 'row'
     },
     textBox: {
       flex: 1,
-      backgroundColor: 'steelblue',
       padding: 16,
       justifyContent: 'space-between'
     },
     imageBox: {
       width: 100,
-      backgroundColor: 'powderblue'
     },
     Text: {
       fontSize: 12,
     },
     subText: {
       fontSize: 12,
-      color: 'red',
+      color: 'darkblue',
     }
   });
   
